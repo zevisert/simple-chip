@@ -100,6 +100,7 @@ class SimpleChip extends LitElement {
     for (const text of chips) {
       if (typeof text === "string") {
         this.dispatchEvent(new CustomEvent('chip-added', {
+          cancelable: true,
           detail: { text }
         }));
       }
@@ -126,11 +127,13 @@ class SimpleChip extends LitElement {
   }
 
   _insert(e) {
-    const chip = new ChipElement();
-    chip.innerText = e.detail.text;
-    this.input.insertAdjacentElement('beforeBegin', chip);
-
-    this.input.value = "";
+    if (! e.defaultPrevented) {
+      const chip = new ChipElement();
+      chip.innerText = e.detail.text;
+      this.input.insertAdjacentElement('beforeBegin', chip);
+      
+      this.input.value = "";
+    }
   }
 
   __keydown(e) {
@@ -146,6 +149,7 @@ class SimpleChip extends LitElement {
   __change() {
     const text = this.input.value;
     this.dispatchEvent(new CustomEvent('chip-added', {
+      cancelable: true,
       detail: { text }
     }));
   }
