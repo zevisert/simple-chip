@@ -16,7 +16,6 @@ import ChipElement from 'simple-chip';
 // Or use `<chip-element>` and querySelector
 const chip = new ChipElement();
 document.appendChild(chip);
-
 ```
 
 ### Add chips
@@ -76,8 +75,6 @@ chip.values
 - [x] CSS Variables
 - [ ] Tests
 - [ ] Drag to reorder
-
-
 
 ## Viewing the Element
 

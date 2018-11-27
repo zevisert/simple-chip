@@ -11,5 +11,28 @@
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "@webcomponents/webcomponentsjs": "^2.0.0",
     "wct-browser-legacy": "^1.0.2"
-  }
+  },
+  "version": "1.1.0",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "polymer test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zevisert/simple-chip.git"
+  },
+  "keywords": [
+    "web-component",
+    "chip",
+    "input",
+    "polymer"
+  ],
+  "author": "zevisert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zevisert/simple-chip/issues"
+  },
+  "homepage": "https://github.com/zevisert/simple-chip#readme"
 }
