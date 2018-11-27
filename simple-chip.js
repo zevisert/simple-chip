@@ -99,7 +99,9 @@ class SimpleChip extends LitElement {
 
     for (const text of chips) {
       if (typeof text === "string") {
-        this._insert(text);
+        this.dispatchEvent(new CustomEvent('chip-added', {
+          detail: { text }
+        }));
       }
     }
   }

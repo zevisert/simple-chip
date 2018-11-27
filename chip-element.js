@@ -1,6 +1,5 @@
 import {html, LitElement} from '@polymer/lit-element';
 
-
 import "@material/mwc-icon";
 
 /**
