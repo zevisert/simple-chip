@@ -18,8 +18,7 @@ class SimpleChip extends LitElement {
     return html`
       <style>
         :host {
-          display: block;
-
+          --chip-input-display: block;
           --chip-input-border-bottom-height: 1px;
           --chip-input-border-bottom-color: lightgray;
           --chip-input-border-bottom-color-focus: darkcyan;
@@ -30,6 +29,8 @@ class SimpleChip extends LitElement {
           --chip-font-color: white;
           --chip-border: none;
           --chip-shadow: none;
+
+          display: var(--chip-input-display);
         }
 
         #container {
