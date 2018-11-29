@@ -73,8 +73,9 @@ class SimpleChip extends LitElement {
           color: var(--chip-input-font-color);
           display: inline-block;
           font-size: var(--chip-input-font-size);
-          height: 3rem;
+          height: 2rem;
           line-height: 32px;
+          vertical-align: middle;
           outline: 0;
           margin: 0;
           padding: 0 !important;
