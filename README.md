@@ -13,7 +13,7 @@ First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polyme
 ### Create 
 ```js
 import ChipElement from 'simple-chip';
-// Or use `<chip-element>` and querySelector
+// Or use `<simple-chip>` and querySelector
 const chip = new ChipElement();
 document.appendChild(chip);
 ```
@@ -69,12 +69,6 @@ for (const specific of removeThese) {
 chip.values
 // -> ['parameters', 'array', 'nested', 'items', 'spread']
 ```
-
-## Todo
-
-- [x] CSS Variables
-- [ ] Tests
-- [ ] Drag to reorder
 
 ## Viewing the Element
 
