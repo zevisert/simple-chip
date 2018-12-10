@@ -14,6 +14,16 @@ function flattenDeep(arr1) {
  * @demo demo/index.html
  */
 class SimpleChip extends LitElement {
+
+  static get properties() { return {
+    commitKeycode: {type: String}
+  }}
+
+  constructor() {
+    super();
+    this.commitKeycode = "Enter";
+  }
+
   render() {
     return html`
       <style>
@@ -139,9 +149,11 @@ class SimpleChip extends LitElement {
   }
 
   __keydown(e) {
-    if (e.key === "Enter") {
+    const commitCodes = this.commitKeycode.split(',').map(k => k.trim());
+    
+    if (commitCodes.includes(e.key) || commitCodes.includes(e.code)) {
       this.__change();
-    } else if (e.key === "Backspace") {
+    } else if (e.code === "Backspace") {
       if (this.input.value.length === 0) {
         this.removeLast();
       }
