@@ -70,6 +70,21 @@ chip.values
 // -> ['parameters', 'array', 'nested', 'items', 'spread']
 ```
 
+### Change the commit keys
+Note that keys can be specified either by key or by keycode, for example `';'` is equivalent to `'Semicolon'`, and either `'b'` or `'KeyB'` works. However, since lists can be specified `' '` must be provided as `'Space'`.
+```html
+<!-- With the attribute ->
+<simple-chip commitkeycode="Space">
+```
+or 
+```js
+// With the property
+chip.commitKeycode = 'Insert';
+
+// Both versions also take comma delimited lists
+chip.commitKeycode = 'Enter, Tab, Space';
+```
+
 ## Viewing the Element
 
 ```
