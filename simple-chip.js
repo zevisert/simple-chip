@@ -16,12 +16,14 @@ function flattenDeep(arr1) {
 class SimpleChip extends LitElement {
 
   static get properties() { return {
-    commitKeycode: {type: String}
+    commitKeycode: {type: String},
+    placeholder: {type: String}
   }}
 
   constructor() {
     super();
     this.commitKeycode = "Enter";
+    this.placeholder = '';
   }
 
   render() {
@@ -93,7 +95,7 @@ class SimpleChip extends LitElement {
         }
       </style>
       <div id="container" @click="${() => this.input.focus()}">
-        <input id="input" type="text">
+        <input id="input" type="text" placeholder="${this.placeholder}">
       </div>
     `;
   }
@@ -136,6 +138,12 @@ class SimpleChip extends LitElement {
       last.remove();
     }
     return last;
+  }
+
+  clear() {
+    for (const chip of this.chips) {
+      chip.remove();
+    }
   }
 
   _insert(e) {
