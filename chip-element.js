@@ -1,7 +1,5 @@
 import {html, LitElement} from '@polymer/lit-element';
 
-import "@material/mwc-icon";
-
 /**
  * `simple-chip`
  * Web-component chip input
@@ -31,16 +29,36 @@ export default class ChipElement extends LitElement {
           user-select: none;
         }
 
-        mwc-icon {
+        .remove-icon {
+          display: flex;
+          height: 100%; 
+          align-items: center;
+
           cursor: pointer;
           float: right;
           font-size: 16px;
           line-height: 32px;
           padding-left: 8px;
         }
+
+        .remove-icon svg {
+          fill: var(--chip-font-color, white);
+          width: 16px;
+          height: 16px;
+        }
+
       </style>
       <slot></slot>
-      <mwc-icon @click="${this.remove}">close</mwc-icon>
+      <div class="remove-icon" @click="${this.remove}">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M 5.7070312 4.2929688 L 4.2929688 5.7070312
+                   L 10.585938 12 L 4.2929688 18.292969 L 5.7070312 19.707031
+                   L 12 13.414062 L 18.292969 19.707031 L 19.707031 18.292969
+                   L 13.414062 12 L 19.707031 5.7070312 L 18.292969 4.2929688
+                   L 12 10.585938 L 5.7070312 4.2929688 z">
+          </path>
+        </svg>
+      </div>
     `;
   }
 
