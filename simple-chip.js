@@ -129,6 +129,14 @@ class SimpleChip extends LitElement {
     this.input.addEventListener('blur', this.__focusWithin.bind(this));
 
     this.addEventListener('chip-added', this._insert.bind(this));
+      
+    this.changeObserver = new MutationObserver(this.__change.bind(this));
+    this.changeObserver.observe(this.container, { childList: true });
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.changeObserver.disconnect();
   }
 
   removeLast() {
@@ -160,7 +168,7 @@ class SimpleChip extends LitElement {
     const commitCodes = this.commitKeycode.split(',').map(k => k.trim());
     
     if (commitCodes.includes(e.key) || commitCodes.includes(e.code)) {
-      this.__change();
+      this.__commit();
     } else if (e.code === "Backspace") {
       if (this.input.value.length === 0) {
         this.removeLast();
@@ -168,14 +176,24 @@ class SimpleChip extends LitElement {
     }
   }
 
-  __change() {
+  __change(mutationsList) {
+    for (const mutation of mutationsList) {
+      if (mutation.type == 'childList' && this.chips.length === 0) {
+        this.input.placeholder = this.placeholder;
+      } else {
+        this.input.placeholder = '';
+      }
+    }
+  }
+  
+  __commit() {
     const text = this.input.value;
     this.dispatchEvent(new CustomEvent('chip-added', {
       cancelable: true,
       detail: { text }
     }));
   }
-
+  
   __focusWithin(e) {
     if (e.type === "blur") {
       this.container.classList.remove('focus');
