@@ -1,4 +1,4 @@
-import {html, LitElement} from '@polymer/lit-element';
+import {html, css, LitElement} from 'lit-element';
 
 /**
  * `simple-chip`
@@ -9,45 +9,48 @@ import {html, LitElement} from '@polymer/lit-element';
  * @demo demo/index.html
  */
 export default class ChipElement extends LitElement {
+
+  static get styles() {
+    return css`
+      :host {
+        display: inline-block;
+        height: 32px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--chip-font-color, white);
+        line-height: 32px;
+        padding: 0 12px;
+        border: var(--chip-border, none);
+        border-radius: 16px;
+        background-color: var(--chip-color, #eee);
+        margin-bottom: 5px;
+        margin-right: 5px;
+        box-shadow: var(--chip-shadow, none);
+        user-select: none;
+      }
+
+      .remove-icon {
+        display: flex;
+        height: 100%; 
+        align-items: center;
+
+        cursor: pointer;
+        float: right;
+        font-size: 16px;
+        line-height: 32px;
+        padding-left: 8px;
+      }
+
+      .remove-icon svg {
+        fill: var(--chip-font-color, white);
+        width: 16px;
+        height: 16px;
+      }
+    `
+  }
+  
   render() {
     return html`
-      <style>
-        :host {
-          display: inline-block;
-          height: 32px;
-          font-size: 13px;
-          font-weight: 500;
-          color: var(--chip-font-color, white);
-          line-height: 32px;
-          padding: 0 12px;
-          border: var(--chip-border, none);
-          border-radius: 16px;
-          background-color: var(--chip-color, #eee);
-          margin-bottom: 5px;
-          margin-right: 5px;
-          box-shadow: var(--chip-shadow, none);
-          user-select: none;
-        }
-
-        .remove-icon {
-          display: flex;
-          height: 100%; 
-          align-items: center;
-
-          cursor: pointer;
-          float: right;
-          font-size: 16px;
-          line-height: 32px;
-          padding-left: 8px;
-        }
-
-        .remove-icon svg {
-          fill: var(--chip-font-color, white);
-          width: 16px;
-          height: 16px;
-        }
-
-      </style>
       <slot></slot>
       <div class="remove-icon" @click="${this.remove}">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

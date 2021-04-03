@@ -3,16 +3,17 @@
   "description": "Web-component chip input",
   "main": "simple-chip.js",
   "dependencies": {
-    "@polymer/lit-element": "^0.6.3",
-    "@polymer/polymer": "^3.1.0"
+    "lit-element": "^2.4.0"
   },
   "devDependencies": {
-    "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
+    "@polymer/iron-demo-helpers": "^3.1.0",
+    "@polymer/polymer": "^3.4.1",
     "@polymer/test-fixture": "^4.0.2",
-    "@webcomponents/webcomponentsjs": "^2.2.1",
-    "chai": "^4.2.0",
-    "mocha": "^5.2.0",
-    "wct-mocha": "^1.0.0"
+    "@webcomponents/webcomponentsjs": "^2.5.0",
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2",
+    "polymer-cli": "^1.9.11",
+    "wct-mocha": "^1.1.0"
   },
   "version": "1.2.3",
   "directories": {

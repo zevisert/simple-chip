@@ -1,4 +1,4 @@
-import {html, LitElement} from '@polymer/lit-element';
+import {css, html, LitElement} from 'lit-element';
 import ChipElement from './chip-element.js';
 
 function flattenDeep(arr1) {
@@ -20,6 +20,75 @@ class SimpleChip extends LitElement {
     placeholder: {type: String}
   }}
 
+  static get styles() {
+    return css`
+      :host {
+        --chip-input-display: block;
+        --chip-input-border-bottom-height: 1px;
+        --chip-input-border-bottom-color: lightgray;
+        --chip-input-border-bottom-color-focus: darkcyan;
+        --chip-input-border-transition: transform 0.25s ease-out;
+        --chip-input-font-size: 16px;
+        --chip-input-font-color: rgba(0,0,0,0.6);
+        --chip-color: #78909c;
+        --chip-font-color: white;
+        --chip-border: none;
+        --chip-shadow: none;
+
+        display: var(--chip-input-display);
+      }
+
+      #container {
+        display: inline-block;
+        position: relative;
+        width: 100%;
+      }
+
+      #container::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: var(--chip-input-border-bottom-height);
+        bottom: 0;
+        left: 0;
+        background-color: var(--chip-input-border-bottom-color);
+      }
+
+      #container::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: var(--chip-input-border-bottom-height);
+        bottom: 0;
+        left: 0;
+        background-color: var(--chip-input-border-bottom-color-focus);
+        transform-origin: bottom right;
+        transition: var(--chip-input-border-transition);
+      }
+
+      #container.focus::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+      
+      input {
+        background: none;
+        border: 0;
+        color: var(--chip-input-font-color);
+        display: inline-block;
+        font-size: var(--chip-input-font-size);
+        height: 2rem;
+        line-height: 32px;
+        vertical-align: middle;
+        outline: 0;
+        margin: 0;
+        padding: 0 !important;
+        width: 120px !important;
+      }
+    `
+  }
+
   constructor() {
     super();
     this.commitKeycode = "Enter";
@@ -28,72 +97,6 @@ class SimpleChip extends LitElement {
 
   render() {
     return html`
-      <style>
-        :host {
-          --chip-input-display: block;
-          --chip-input-border-bottom-height: 1px;
-          --chip-input-border-bottom-color: lightgray;
-          --chip-input-border-bottom-color-focus: darkcyan;
-          --chip-input-border-transition: transform 0.25s ease-out;
-          --chip-input-font-size: 16px;
-          --chip-input-font-color: rgba(0,0,0,0.6);
-          --chip-color: #78909c;
-          --chip-font-color: white;
-          --chip-border: none;
-          --chip-shadow: none;
-
-          display: var(--chip-input-display);
-        }
-
-        #container {
-          display: inline-block;
-          position: relative;
-          width: 100%;
-        }
-
-        #container::before {
-          content: '';
-          position: absolute;
-          width: 100%;
-          height: var(--chip-input-border-bottom-height);
-          bottom: 0;
-          left: 0;
-          background-color: var(--chip-input-border-bottom-color);
-        }
-
-        #container::after {
-          content: '';
-          position: absolute;
-          width: 100%;
-          transform: scaleX(0);
-          height: var(--chip-input-border-bottom-height);
-          bottom: 0;
-          left: 0;
-          background-color: var(--chip-input-border-bottom-color-focus);
-          transform-origin: bottom right;
-          transition: var(--chip-input-border-transition);
-        }
-
-        #container.focus::after {
-          transform: scaleX(1);
-          transform-origin: bottom left;
-        }
-        
-        input {
-          background: none;
-          border: 0;
-          color: var(--chip-input-font-color);
-          display: inline-block;
-          font-size: var(--chip-input-font-size);
-          height: 2rem;
-          line-height: 32px;
-          vertical-align: middle;
-          outline: 0;
-          margin: 0;
-          padding: 0 !important;
-          width: 120px !important;
-        }
-      </style>
       <div id="container" @click="${() => this.input.focus()}">
         <input id="input" type="text" placeholder="${this.placeholder}">
       </div>
